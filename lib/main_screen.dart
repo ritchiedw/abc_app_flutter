@@ -31,16 +31,22 @@ class MainScreen extends StatelessWidget {
               onPressed: () {
                 print("Report It");
               },
+              color: Color(0xff1db15b),
             ),
             FlatButton(
               child: Text("Request It"),
               onPressed: () {
                 print("Request It");
               },
+              color: Color(0xff1db15b),
             ),
             FlatButton(
               child: Text("Pay It"),
-              onPressed: () {},
+              onPressed: () {
+                print("Pay It");
+                Navigator.pushNamed(context, "paymentScreen");
+              },
+              color: Color(0xff1db15b),
             ),
           ],
         ),
@@ -62,10 +68,9 @@ class MainScreen extends StatelessWidget {
             ListTile(
               title: Text('Item 1'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
+                print("onTap Item 1");
                 Navigator.pop(context);
+                Navigator.pushNamed(context, "subscriptionPage");
               },
             ),
             ListTile(
