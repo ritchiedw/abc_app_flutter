@@ -5,9 +5,9 @@ import 'package:path/path.dart';
 import 'dart:io';
 
 class DatabaseHelper {
-  var db;
+  Database db;
 
-  void doDatabase() async {
+  Future<Database> doDatabase() async {
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, "user.db");
 
@@ -35,5 +35,6 @@ class DatabaseHelper {
     }
 // open the database
     db = await openDatabase(path, readOnly: true);
+    return db;
   }
 }
