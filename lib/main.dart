@@ -1,6 +1,6 @@
-import 'package:abc_app_flutter/payment_screen.dart';
+import 'package:abc_app_flutter/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:abc_app_flutter/main_screen.dart';
+import 'package:abc_app_flutter/screens/main_screen.dart';
 import 'screens/subscription_screen.dart';
 
 void main() => runApp(ABCApp());
