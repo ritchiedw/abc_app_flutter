@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:abc_app_flutter/widgets/abc_appbar.dart';
 
 class MainScreen extends StatelessWidget {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(
-          0xff017cc1,
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.0),
+        child: ABCAppBar(
+          scaffoldKey: _scaffoldKey,
         ),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          tooltip: 'Navigation menu',
-          onPressed: null,
-        ),
-        title: Text('Argyll and Bute Council'),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: null,
-          ),
-        ],
       ),
       body: Center(
         child: Column(
