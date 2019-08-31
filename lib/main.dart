@@ -1,7 +1,7 @@
 import 'package:abc_app_flutter/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:abc_app_flutter/main_screen.dart';
-import 'subscription_page.dart';
+import 'screens/subscription_screen.dart';
 
 void main() => runApp(ABCApp());
 
@@ -20,7 +20,7 @@ class ABCApp extends StatelessWidget {
       routes: {
         "home": (context) => MainScreen(),
         "paymentScreen": (context) => PaymentScreen(),
-        "subscriptionPage": (context) => SubscriptionPage(),
+        "subscriptionPage": (context) => SubscriptionScreen(),
       },
     );
   }
