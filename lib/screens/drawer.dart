@@ -22,7 +22,7 @@ class ABCDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Item 1'),
+            title: Text('Subscriptions'),
             onTap: () {
               print("onTap Item 1");
               Navigator.pop(context);
@@ -30,12 +30,13 @@ class ABCDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Item 2'),
+            title: Text('User details'),
             onTap: () {
               // Update the state of the app
               // ...
               // Then close the drawer
               Navigator.pop(context);
+              Navigator.pushNamed(context, "addDetailsScreen");
             },
           ),
         ],

@@ -9,7 +9,7 @@ class DatabaseHelper {
 
   void doDatabase() async {
     var databasesPath = await getDatabasesPath();
-    var path = join(databasesPath, "demo_asset_example.db");
+    var path = join(databasesPath, "user.db");
 
 // Check if the database exists
     var exists = await databaseExists(path);
@@ -24,7 +24,7 @@ class DatabaseHelper {
       } catch (_) {}
 
       // Copy from asset
-      ByteData data = await rootBundle.load(join("assets", "example.db"));
+      ByteData data = await rootBundle.load(join("assets", "test.db"));
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
