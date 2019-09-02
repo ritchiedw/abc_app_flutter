@@ -26,7 +26,7 @@ class ABCDrawer extends StatelessWidget {
             onTap: () {
               print("onTap Item 1");
               Navigator.pop(context);
-              Navigator.pushNamed(context, "subscriptionPage");
+              Navigator.pushNamed(context, "subscriptionScreen");
             },
           ),
           ListTile(

@@ -18,7 +18,13 @@ class ABCAppBar extends StatelessWidget {
       leading: IconButton(
         icon: Icon(Icons.menu),
         tooltip: 'Navigation menu',
-        onPressed: () => _scaffoldKey.currentState.openDrawer(),
+        onPressed: () {
+          print(_scaffoldKey);
+          print(_scaffoldKey.currentState);
+          print(_scaffoldKey.currentContext);
+          print(_scaffoldKey.currentWidget);
+          _scaffoldKey.currentState.openDrawer();
+        },
       ),
       title: Text('Argyll and Bute Council'),
       actions: <Widget>[

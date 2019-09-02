@@ -44,7 +44,7 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
-      drawer: new ABCDrawer(),
+      drawer: ABCDrawer(),
     );
   }
 }
