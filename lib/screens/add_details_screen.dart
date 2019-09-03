@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '../models/user.dart';
 import '../models/user_data.dart';
+import 'package:abc_app_flutter/helpers/consts.dart';
 
 class AddDetailsScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -25,11 +26,14 @@ class AddDetailsScreen extends StatelessWidget {
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text("User details"),
-            Text("First name"),
             TextField(
+              decoration: kTextFieldDecoration.copyWith(
+                hintText: 'Enter your first name',
+              ),
+              textAlign: TextAlign.center,
               onChanged: (newFirstname) {
                 print(newFirstname);
                 firstName = newFirstname;
@@ -37,6 +41,10 @@ class AddDetailsScreen extends StatelessWidget {
             ),
             Text("Last name"),
             TextField(
+              decoration: kTextFieldDecoration.copyWith(
+                hintText: 'Enter your last name',
+              ),
+              textAlign: TextAlign.center,
               onChanged: (newLastname) {
                 print(newLastname);
                 lastName = newLastname;
