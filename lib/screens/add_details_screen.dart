@@ -94,10 +94,12 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
     isWaiting = true;
     //var returnMap = Map<String, String>();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    firstName = prefs.getString('firstName');
-    lastName = prefs.getString('lastName');
-    txtFirstName.text = firstName;
-    txtLastName.text = lastName;
     isWaiting = false;
+    setState(() {
+      firstName = prefs.getString('firstName');
+      lastName = prefs.getString('lastName');
+      txtFirstName.text = firstName;
+      txtLastName.text = lastName;
+    });
   }
 }
