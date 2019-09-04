@@ -6,15 +6,28 @@ import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../models/user_data.dart';
 import 'package:abc_app_flutter/helpers/consts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AddDetailsScreen extends StatelessWidget {
+class AddDetailsScreen extends StatefulWidget {
+  @override
+  _AddDetailsScreenState createState() => _AddDetailsScreenState();
+}
+
+class _AddDetailsScreenState extends State<AddDetailsScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  String firstName;
+  String lastName;
+  var txtFirstName = TextEditingController();
+  var txtLastName = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    getDetails();
+  }
 
   @override
   Widget build(BuildContext context) {
-    String firstName;
-    String lastName;
-
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
@@ -38,6 +51,7 @@ class AddDetailsScreen extends StatelessWidget {
                 print(newFirstname);
                 firstName = newFirstname;
               },
+              controller: txtFirstName,
             ),
             Text("Last name"),
             TextField(
@@ -49,10 +63,12 @@ class AddDetailsScreen extends StatelessWidget {
                 print(newLastname);
                 lastName = newLastname;
               },
+              controller: txtLastName,
             ),
             FlatButton(
               onPressed: () {
-                Provider.of<UserData>(context).saveUser(User(firstName));
+                //Provider.of<UserData>(context).saveUser(User(firstName));
+                saveDetails(firstName, lastName);
               },
               child: Text("Add details"),
             )
@@ -64,5 +80,24 @@ class AddDetailsScreen extends StatelessWidget {
     //return Container(
     //  child: Text("I am the payment screen"),
     //);
+  }
+
+  void saveDetails(String firstName, String lastName) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('firstName', firstName);
+    await prefs.setString('lastName', lastName);
+  }
+
+  bool isWaiting = false;
+
+  void getDetails() async {
+    isWaiting = true;
+    //var returnMap = Map<String, String>();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    firstName = prefs.getString('firstName');
+    lastName = prefs.getString('lastName');
+    txtFirstName.text = firstName;
+    txtLastName.text = lastName;
+    isWaiting = false;
   }
 }
