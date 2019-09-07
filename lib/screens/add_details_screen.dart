@@ -22,6 +22,7 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
 
   @override
   void initState() {
+    print("initState()");
     super.initState();
     getDetails();
   }
@@ -83,6 +84,7 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
   }
 
   void saveDetails(String firstName, String lastName) async {
+    print("saveDetails()");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('firstName', firstName);
     await prefs.setString('lastName', lastName);
@@ -91,13 +93,18 @@ class _AddDetailsScreenState extends State<AddDetailsScreen> {
   bool isWaiting = false;
 
   void getDetails() async {
+    print("getDetails()");
     isWaiting = true;
     //var returnMap = Map<String, String>();
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(prefs);
     isWaiting = false;
     setState(() {
+      print("setState()");
       firstName = prefs.getString('firstName');
+      print("firstname: $firstName");
       lastName = prefs.getString('lastName');
+      print("lastName: $lastName");
       txtFirstName.text = firstName;
       txtLastName.text = lastName;
     });
