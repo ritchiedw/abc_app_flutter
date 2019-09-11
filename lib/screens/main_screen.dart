@@ -7,44 +7,48 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _scaffoldKey,
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0),
-        child: ABCAppBar(
-          scaffoldKey: _scaffoldKey,
+    return Center(
+      child: Center(
+        child: Scaffold(
+          key: _scaffoldKey,
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(50.0),
+            child: ABCAppBar(
+              scaffoldKey: _scaffoldKey,
+            ),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                FlatButton(
+                  child: Text("Report It"),
+                  onPressed: () {
+                    print("Report It");
+                  },
+                  color: Color(0xff1db15b),
+                ),
+                FlatButton(
+                  child: Text("Request It"),
+                  onPressed: () {
+                    print("Request It");
+                  },
+                  color: Color(0xff1db15b),
+                ),
+                FlatButton(
+                  child: Text("Pay It"),
+                  onPressed: () {
+                    print("Pay It");
+                    Navigator.pushNamed(context, "paymentScreen");
+                  },
+                  color: Color(0xff1db15b),
+                ),
+              ],
+            ),
+          ),
+          drawer: ABCDrawer(),
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            FlatButton(
-              child: Text("Report It"),
-              onPressed: () {
-                print("Report It");
-              },
-              color: Color(0xff1db15b),
-            ),
-            FlatButton(
-              child: Text("Request It"),
-              onPressed: () {
-                print("Request It");
-              },
-              color: Color(0xff1db15b),
-            ),
-            FlatButton(
-              child: Text("Pay It"),
-              onPressed: () {
-                print("Pay It");
-                Navigator.pushNamed(context, "paymentScreen");
-              },
-              color: Color(0xff1db15b),
-            ),
-          ],
-        ),
-      ),
-      drawer: ABCDrawer(),
     );
   }
 }
