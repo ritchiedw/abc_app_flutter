@@ -7,44 +7,51 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return DefaultTabController(
+      length: 3,
       child: Center(
         child: Scaffold(
           key: _scaffoldKey,
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(50.0),
+            preferredSize: Size.fromHeight(100.0),
             child: ABCAppBar(
               scaffoldKey: _scaffoldKey,
             ),
           ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                FlatButton(
-                  child: Text("Report It"),
-                  onPressed: () {
-                    print("Report It");
-                  },
-                  color: Color(0xff1db15b),
+          body: TabBarView(
+            children: <Widget>[
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    FlatButton(
+                      child: Text("Report It"),
+                      onPressed: () {
+                        print("Report It");
+                      },
+                      color: Color(0xff1db15b),
+                    ),
+                    FlatButton(
+                      child: Text("Request It"),
+                      onPressed: () {
+                        print("Request It");
+                      },
+                      color: Color(0xff1db15b),
+                    ),
+                    FlatButton(
+                      child: Text("Pay It"),
+                      onPressed: () {
+                        print("Pay It");
+                        Navigator.pushNamed(context, "paymentScreen");
+                      },
+                      color: Color(0xff1db15b),
+                    ),
+                  ],
                 ),
-                FlatButton(
-                  child: Text("Request It"),
-                  onPressed: () {
-                    print("Request It");
-                  },
-                  color: Color(0xff1db15b),
-                ),
-                FlatButton(
-                  child: Text("Pay It"),
-                  onPressed: () {
-                    print("Pay It");
-                    Navigator.pushNamed(context, "paymentScreen");
-                  },
-                  color: Color(0xff1db15b),
-                ),
-              ],
-            ),
+              ),
+              Icon(Icons.directions_transit),
+              Icon(Icons.directions_bike),
+            ],
           ),
           drawer: ABCDrawer(),
         ),

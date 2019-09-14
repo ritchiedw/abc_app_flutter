@@ -35,6 +35,19 @@ class ABCAppBar extends StatelessWidget {
           onPressed: null,
         ),
       ],
+      bottom: TabBar(
+        tabs: <Widget>[
+          Tab(
+            icon: Icon(Icons.add),
+          ),
+          Tab(
+            icon: Icon(Icons.directions_car),
+          ),
+          Tab(
+            icon: Icon(Icons.add_comment),
+          ),
+        ],
+      ),
     );
   }
 }
