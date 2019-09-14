@@ -2,17 +2,19 @@ import 'package:abc_app_flutter/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:abc_app_flutter/screens/main_screen.dart';
 import 'package:provider/provider.dart';
-import 'models/user_data.dart';
+import 'models/user.dart';
 import 'screens/add_details_screen.dart';
 import 'screens/subscription_screen.dart';
 
-void main() => runApp(ABCApp());
+void main() {
+  runApp(ABCApp());
+}
 
 class ABCApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      builder: (context) => UserData(),
+      builder: (context) => User(),
       child: MaterialApp(
         theme: ThemeData.light().copyWith(
             primaryColor: Color(

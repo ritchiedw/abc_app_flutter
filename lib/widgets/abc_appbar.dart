@@ -19,6 +19,7 @@ class ABCAppBar extends StatelessWidget {
         icon: Icon(Icons.menu),
         tooltip: 'Navigation menu',
         onPressed: () {
+          print("Hamburger pressed");
           print(_scaffoldKey);
           print(_scaffoldKey.currentState);
           print(_scaffoldKey.currentContext);
