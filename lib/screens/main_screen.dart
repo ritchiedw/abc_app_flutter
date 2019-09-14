@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:abc_app_flutter/widgets/abc_appbar.dart';
 import 'package:abc_app_flutter/screens/drawer.dart';
 
+import '../widgets/abc_appbar.dart';
+
 class MainScreen extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -14,7 +16,7 @@ class MainScreen extends StatelessWidget {
           key: _scaffoldKey,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(100.0),
-            child: ABCAppBar(
+            child: ABCAppBarWithTabs(
               scaffoldKey: _scaffoldKey,
             ),
           ),

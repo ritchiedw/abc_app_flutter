@@ -12,6 +12,44 @@ class ABCAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        backgroundColor: Color(
+          0xff017cc1,
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.menu),
+          tooltip: 'Navigation menu',
+          onPressed: () {
+            print("Hamburger pressed");
+            print(_scaffoldKey);
+            print(_scaffoldKey.currentState);
+            print(_scaffoldKey.currentContext);
+            print(_scaffoldKey.currentWidget);
+            _scaffoldKey.currentState.openDrawer();
+          },
+        ),
+        title: Text('Argyll and Bute Council'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            tooltip: 'Search',
+            onPressed: null,
+          ),
+        ]);
+  }
+}
+
+class ABCAppBarWithTabs extends StatelessWidget {
+  const ABCAppBarWithTabs({
+    Key key,
+    @required GlobalKey<ScaffoldState> scaffoldKey,
+  })  : _scaffoldKey = scaffoldKey,
+        super(key: key);
+
+  final GlobalKey<ScaffoldState> _scaffoldKey;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
       backgroundColor: Color(
         0xff017cc1,
       ),
