@@ -1,7 +1,9 @@
 import 'package:abc_app_flutter/screens/payment_screen.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:abc_app_flutter/screens/main_screen.dart';
 import 'package:provider/provider.dart';
+//import 'helpers/message_handling.dart';
 import 'models/user.dart';
 import 'screens/add_details_screen.dart';
 import 'screens/subscription_screen.dart';
@@ -13,6 +15,7 @@ void main() {
 class ABCApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //MessageHandling mh = MessageHandling(context);
     return ChangeNotifierProvider(
       builder: (context) => User(),
       child: MaterialApp(
