@@ -82,7 +82,7 @@ class ABCAppBarWithTabs extends StatelessWidget {
             icon: Icon(Icons.directions_car),
           ),
           Tab(
-            icon: Icon(Icons.add_comment),
+            icon: Icon(Icons.delete),
           ),
         ],
       ),
