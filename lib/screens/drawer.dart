@@ -1,3 +1,4 @@
+import 'package:abc_app_flutter/helpers/message_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +38,7 @@ class ABCDrawer extends StatelessWidget {
               Navigator.pop(context);
               Navigator.pushNamed(context, "addDetailsScreen");
             },
-          ),
+          )
         ],
       ),
     );
