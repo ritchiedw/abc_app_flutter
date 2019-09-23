@@ -16,6 +16,7 @@ class AddDetailsScreen extends StatelessWidget {
     var user = Provider.of<User>(context);
     firstNameTEC.text = user.firstName;
     var firstName;
+    var postCode;
 
     return Scaffold(
       key: _scaffoldKey,
@@ -47,6 +48,28 @@ class AddDetailsScreen extends StatelessWidget {
                 },
                 controller: firstNameTEC,
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                textAlign: TextAlign.center,
+                onChanged: (newPostcode) {
+                  print(newPostcode);
+                  postCode = newPostcode;
+                },
+                controller: firstNameTEC,
+              ),
+            ),
+            FlatButton(
+              onPressed: () {
+                //Provider.of<UserData>(context).saveUser(User(firstName));
+                print("Search Postcode");
+
+                //user.firstName = firstName;
+                //user.saveDetails();
+              },
+              child: Text("Search Postcode"),
+              color: Color(0xff1db15b),
             ),
             FlatButton(
               onPressed: () {
