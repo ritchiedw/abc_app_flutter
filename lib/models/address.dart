@@ -12,8 +12,13 @@ class Address {
       "https://arcgis.argyll-bute.gov.uk/arcgis/rest/services/CAG_and_Council_Property/MapServer/0/query?text=";
   String endUrl = "&outFields=ADDRESS%2C+UPRN&f=pjson";
 
-  getAddressFromPostcode(String postcode) async {
-    String requestURL = '$url$postcode$endUrl';
+  List<String> addresses = [];
+
+  Future<Map> getAddressFromPostcode(String postcode) async {
+    print("getAddressFromPostcode()");
+
+    String requestURL = '$url${postcode.toUpperCase()}$endUrl';
+    print(requestURL);
 
     http.Response response = await http.get(requestURL);
     if (response.statusCode == 200) {

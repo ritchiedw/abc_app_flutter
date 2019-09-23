@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:abc_app_flutter/widgets/abc_appbar.dart';
 import 'package:provider/provider.dart';
 
+import '../models/address.dart';
 import '../models/user.dart';
 import 'package:abc_app_flutter/helpers/consts.dart';
+
+import '../widgets/postcode_search.dart';
 
 class AddDetailsScreen extends StatelessWidget {
   static final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -49,28 +52,7 @@ class AddDetailsScreen extends StatelessWidget {
                 controller: firstNameTEC,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextField(
-                textAlign: TextAlign.center,
-                onChanged: (newPostcode) {
-                  print(newPostcode);
-                  postCode = newPostcode;
-                },
-                controller: firstNameTEC,
-              ),
-            ),
-            FlatButton(
-              onPressed: () {
-                //Provider.of<UserData>(context).saveUser(User(firstName));
-                print("Search Postcode");
-
-                //user.firstName = firstName;
-                //user.saveDetails();
-              },
-              child: Text("Search Postcode"),
-              color: Color(0xff1db15b),
-            ),
+            PostcodeSearch(),
             FlatButton(
               onPressed: () {
                 //Provider.of<UserData>(context).saveUser(User(firstName));
