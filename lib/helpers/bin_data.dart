@@ -14,6 +14,7 @@ class BinData {
     http.Response response = await http.get(requestUrl);
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
+      print(decodedData);
       //var lastPrice = decodedData['last'];
       //return lastPrice;
       //cryptoValues[crypto] = lastPrice.toStringAsFixed(0);
