@@ -3,12 +3,39 @@ import 'package:flutter/material.dart';
 import '../models/address.dart';
 
 class PostcodeSearch extends StatefulWidget {
+  //Function raiseState
+
   @override
   _PostcodeSearchState createState() => _PostcodeSearchState();
 }
 
 class _PostcodeSearchState extends State<PostcodeSearch> {
   String postCode;
+  Map<String, String> uprnAddress = {};
+  String selectedUPRN;
+
+  DropdownButton<String> androidDropdown() {
+    print('androidDropdown');
+    List<DropdownMenuItem<String>> dropdownItems = [];
+    uprnAddress.forEach((k, v) {
+      var newItem = DropdownMenuItem(
+        child: Text(v),
+        value: k,
+      );
+      dropdownItems.add(newItem);
+    });
+
+    return DropdownButton<String>(
+      value: selectedUPRN,
+      items: dropdownItems,
+      onChanged: (value) {
+        setState(() {
+          selectedUPRN = value;
+          getData();
+        });
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +64,18 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
           child: Text("Search Postcode"),
           color: Color(0xff1db15b),
         ),
+        Container(
+          height: 50.0,
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(bottom: 10.0),
+          color: Colors.lightBlue,
+          child: androidDropdown(),
+        ),
       ],
     );
   }
 
+/*
   DropdownButton<String> getDropdown() {
     List<DropdownMenuItem<String>> dropdownMenuItems = [];
     for (String address in addressList) {
@@ -51,9 +86,22 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
       dropdownItems.add(newItem);
     }
   }
-
+*/
   void getData() async {
+    //Map<String, String> uprnAddress = {};
     Address address = Address();
-    address.getAddressFromPostcode(postCode);
+    List<dynamic> addressList = await address.getAddressFromPostcode(postCode);
+    //print(addressList);
+    print(addressList[0]);
+    addressList.forEach((element) {
+      print(element['attributes']['ADDRESS']);
+      print(element['attributes']['UPRN']);
+      String uprn = element['attributes']['UPRN'];
+      String someAddress = element['attributes']['ADDRESS'];
+      //uprnAddress[uprn] = thisAddress;
+      uprnAddress.putIfAbsent(uprn, () => someAddress.substring(0, 30));
+    });
+    setState(() {});
+    print(uprnAddress);
   }
 }

@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class User with ChangeNotifier {
   String firstName;
+  //String postCode;
 
   bool isWaiting = false;
 
