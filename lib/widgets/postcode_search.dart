@@ -41,6 +41,17 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
     );
   }
 
+  DropdownButton<String> getDropdown() {
+    List<DropdownMenuItem<String>> dropdownMenuItems = [];
+    for (String address in addressList) {
+      var newItem = DropdownMenuItem(
+        child: Text(currency),
+        value: currency,
+      );
+      dropdownItems.add(newItem);
+    }
+  }
+
   void getData() async {
     Address address = Address();
     address.getAddressFromPostcode(postCode);
