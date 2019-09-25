@@ -48,7 +48,7 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
         child: Text(currency),
         value: currency,
       );
-      dropdownItems.add(newItem);
+      dropdownItems.add(newItem);gR
     }
   }
 
