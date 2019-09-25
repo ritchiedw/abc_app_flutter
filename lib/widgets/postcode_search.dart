@@ -1,4 +1,6 @@
+import 'package:abc_app_flutter/models/bin_route.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/address.dart';
 
@@ -31,7 +33,9 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
       onChanged: (value) {
         setState(() {
           selectedUPRN = value;
-          getData();
+          //getData();
+          getBinData();
+          savePreference();
         });
       },
     );
@@ -103,5 +107,14 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
     });
     setState(() {});
     print(uprnAddress);
+  }
+
+  void getBinData() async {
+    BinRoute binRoute = BinRoute();
+  }
+
+  void savePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('UPRN', selectedUPRN);
   }
 }
