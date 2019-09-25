@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class Address {
@@ -14,12 +15,28 @@ class Address {
 
   List<String> addresses = [];
 
-  Future<Map> getAddressFromPostcode(String postcode) async {
+  Future getAddressFromPostcode(String postcode) async {
     print("getAddressFromPostcode()");
 
     String requestURL = '$url${postcode.toUpperCase()}$endUrl';
     print(requestURL);
 
+    //*************************************************
+    HttpClient client = new HttpClient();
+    client.badCertificateCallback =
+        ((X509Certificate cert, String host, int port) => true);
+
+    HttpClientRequest request = await client.postUrl(Uri.parse(requestURL));
+    HttpClientResponse response = await request.close();
+    String reply = await response.transform(utf8.decoder).join();
+
+    //print(reply);
+    var decodedData = jsonDecode(reply);
+    //print(decodedData["features"]);
+    //print(decodedData['features'].runtimeType);
+    return (decodedData['features']);
+    //*************************************************
+    /*
     http.Response response = await http.get(requestURL);
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
@@ -30,6 +47,7 @@ class Address {
       print(response.statusCode);
       throw 'Problem with the get request';
     }
+     */
   }
 /*
   DropdownButton<String> androidDropdown() {
