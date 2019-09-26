@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:xml/xml.dart' as xml;
 
 class BinRoute {
 //https://ssdlive.argyll-bute.gov.uk:8443/binuplift/api/web/properties/uprn/000125029348
@@ -58,40 +59,51 @@ class BinRoute {
   </response>
   */
 
-  String url = "https://www.argyll-bute.gov.uk/";
-
-  String xml = """
+  String $responseXML = """
   <response>
-  <item>
-  <route>LOM01</route>
-  <wastetype>Recycling</wastetype>
-  <collectiontype>Domestic</collectiontype>
-  <collectiondate>2019-09-30</collectiondate>
-  <ruid>2042</ruid>
-  <calyear>2018/2019</calyear>
-  </item>
-  <item>
-  <route>LOM01</route>
-  <wastetype>Glass</wastetype>
-  <collectiontype>Domestic</collectiontype>
-  <collectiondate>2019-09-30</collectiondate>
-  <ruid>2043</ruid>
-  <calyear>2018/2019</calyear>
-  </item>
-  <item>
-  <route>LOM01</route>
-  <wastetype>Food</wastetype>
-  <collectiontype>Domestic</collectiontype>
-  <collectiondate>2019-09-30</collectiondate>
-  <ruid>2044</ruid>
-  <calyear>2018/2019</calyear>
-  </item>
-  </response>""";
+    <item>
+      <route>LOM01</route>
+      <wastetype>Recycling</wastetype>
+      <collectiontype>Domestic</collectiontype>
+      <collectiondate>2019-09-30</collectiondate>
+      <ruid>2042</ruid>
+      <calyear>2018/2019</calyear>
+    </item>
+    <item>
+      <route>LOM01</route>
+      <wastetype>Glass</wastetype>
+      <collectiontype>Domestic</collectiontype>
+      <collectiondate>2019-09-30</collectiondate>
+      <ruid>2043</ruid>
+      <calyear>2018/2019</calyear>
+    </item>
+    <item>
+      <route>LOM01</route>
+      <wastetype>Food</wastetype>
+      <collectiontype>Domestic</collectiontype>
+      <collectiondate>2019-09-30</collectiondate>
+      <ruid>2044</ruid>
+      <calyear>2018/2019</calyear>
+    </item>
+  </response>
+  """;
+
+  String url = "https://www.argyll-bute.gov.uk/";
 
   Future getBinRouteFromUPRN(String uprn) async {
     //
     String requestURL = '$url$uprn';
 
+    var document = xml.parse($responseXML);
+
+    //document.
+
+    return Future.delayed(Duration(seconds: 3), () => $responseXML);
+
+    //*************************************************
+    /*
+    HttpClient client = new HttpClient();
+>>>>>>> 65d3f2ed503ad757e009c65cc199cd5fda931814
     client.badCertificateCallback =
     ((X509Certificate cert, String host, int port) => true);
 
