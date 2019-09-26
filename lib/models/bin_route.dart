@@ -92,14 +92,6 @@ class BinRoute {
     //
     String requestURL = '$url$uprn';
 
-    return new Future.delayed(
-      Duration(seconds: 2),
-      () => xml,
-    );
-
-    //*************************************************
-    /*
-    HttpClient client = new HttpClient();
     client.badCertificateCallback =
     ((X509Certificate cert, String host, int port) => true);
 

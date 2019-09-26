@@ -15,6 +15,7 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
   String postCode;
   Map<String, String> uprnAddress = {};
   String selectedUPRN;
+  String binData = "";
 
   DropdownButton<String> androidDropdown() {
     print('androidDropdown');
@@ -39,6 +40,10 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
         });
       },
     );
+  }
+
+  Widget binDetails() {
+    return Text(binData);
   }
 
   @override
@@ -75,6 +80,12 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
           color: Colors.lightBlue,
           child: androidDropdown(),
         ),
+        Container(
+          height: 50.0,
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(bottom: 10.0),
+          child: binDetails(),
+        )
       ],
     );
   }
@@ -111,6 +122,8 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
 
   void getBinData() async {
     BinRoute binRoute = BinRoute();
+    binData = await binRoute.getBinRouteFromUPRN(selectedUPRN);
+    setState(() {});
   }
 
   void savePreference() async {
