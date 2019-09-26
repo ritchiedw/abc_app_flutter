@@ -22,19 +22,44 @@ class Address {
     print(requestURL);
 
     //*************************************************
-    HttpClient client = new HttpClient();
-    client.badCertificateCallback =
-        ((X509Certificate cert, String host, int port) => true);
+    try {
+      HttpClient client = new HttpClient();
+      client.badCertificateCallback =
+          ((X509Certificate cert, String host, int port) => true);
 
-    HttpClientRequest request = await client.postUrl(Uri.parse(requestURL));
-    HttpClientResponse response = await request.close();
-    String reply = await response.transform(utf8.decoder).join();
+      HttpClientRequest request = await client.postUrl(Uri.parse(requestURL));
+      HttpClientResponse response = await request.close();
+      String reply = await response.transform(utf8.decoder).join();
 
-    //print(reply);
-    var decodedData = jsonDecode(reply);
-    //print(decodedData["features"]);
-    //print(decodedData['features'].runtimeType);
-    return (decodedData['features']);
+      //print(reply);
+      var decodedData = jsonDecode(reply);
+      print(decodedData["features"]);
+      print(decodedData['features'].runtimeType);
+      return (decodedData['features']);
+    } catch (e) {
+      print(e.runtimeType);
+      //print(element['attributes']['ADDRESS']);
+      //print(element['attributes']['UPRN']);
+      //List l = new List();
+      //List attributes = new List();
+
+      var jsonString = '{"attributes": {"ADDRESS": "Problem", "UPRN": "0"}}';
+      var errorReturn = jsonDecode(jsonString);
+      print(errorReturn);
+      print(errorReturn['attributes']);
+      print(errorReturn['attributes']['ADDRESS']);
+
+/*
+      var errorReturn = {
+        'attributes': [
+          {'ADDRESS': 'Problem'},
+          {'UPRN', '0'}
+        ]
+      };
+*/
+      List<dynamic> errorList = ['Problem'];
+      return (errorReturn);
+    }
     //*************************************************
     /*
     http.Response response = await http.get(requestURL);

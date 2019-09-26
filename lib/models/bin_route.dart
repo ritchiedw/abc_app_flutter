@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:xml/xml.dart' as xml;
 
 class BinRoute {
-
 //https://ssdlive.argyll-bute.gov.uk:8443/binuplift/api/web/properties/uprn/000125029348
 /*
 <response>
@@ -59,14 +59,45 @@ class BinRoute {
   </response>
   */
 
-
-
+  String $responseXML = """
+  <response>
+    <item>
+      <route>LOM01</route>
+      <wastetype>Recycling</wastetype>
+      <collectiontype>Domestic</collectiontype>
+      <collectiondate>2019-09-30</collectiondate>
+      <ruid>2042</ruid>
+      <calyear>2018/2019</calyear>
+    </item>
+    <item>
+      <route>LOM01</route>
+      <wastetype>Glass</wastetype>
+      <collectiontype>Domestic</collectiontype>
+      <collectiondate>2019-09-30</collectiondate>
+      <ruid>2043</ruid>
+      <calyear>2018/2019</calyear>
+    </item>
+    <item>
+      <route>LOM01</route>
+      <wastetype>Food</wastetype>
+      <collectiontype>Domestic</collectiontype>
+      <collectiondate>2019-09-30</collectiondate>
+      <ruid>2044</ruid>
+      <calyear>2018/2019</calyear>
+    </item>
+  </response>
+  """;
 
   String url = "https://www.argyll-bute.gov.uk/";
 
   Future getBinRouteFromUPRN(String uprn) async {
     //
     String requestURL = '$url$uprn';
+
+    var document = xml.parse($responseXML);
+    //document.
+
+    return Future.delayed(Duration(seconds: 3), () => $responseXML);
 
     //*************************************************
     /*
@@ -85,6 +116,7 @@ class BinRoute {
     return (decodedData['features']);
      */
     //*************************************************
+    /*
     http.Response response = await http.get(requestURL);
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
@@ -95,5 +127,6 @@ class BinRoute {
       print(response.statusCode);
       throw 'Problem with the get request';
     }
+     */
   }
 }
