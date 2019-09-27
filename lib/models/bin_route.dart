@@ -95,9 +95,21 @@ class BinRoute {
     String requestURL = '$url$uprn';
 
     var document = xml.parse($responseXML);
-    //document.
+    var items = document.findAllElements('item');
 
-    return Future.delayed(Duration(seconds: 3), () => $responseXML);
+    String output = "";
+
+    items.forEach((node) {
+      print("foreach\n");
+      var wastetype = node.findElements('wastetype');
+      var collectiondate = node.findElements('collectiondate');
+      print(wastetype.first.text);
+      output += '${wastetype.first.text},${collectiondate.first.text},';
+    });
+
+    print(output);
+
+    return Future.delayed(Duration(seconds: 3), () => output);
 
     //*************************************************
     /*

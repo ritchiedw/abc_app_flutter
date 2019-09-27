@@ -81,7 +81,7 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
           child: androidDropdown(),
         ),
         Container(
-          height: 50.0,
+          height: 150.0,
           alignment: Alignment.center,
           padding: EdgeInsets.only(bottom: 10.0),
           child: binDetails(),
