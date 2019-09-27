@@ -95,7 +95,10 @@ class BinRoute {
     String requestURL = '$url$uprn';
 
     var document = xml.parse($responseXML);
+
     var items = document.findAllElements('item');
+
+    //document.
 
     String output = "";
 
@@ -114,6 +117,7 @@ class BinRoute {
     //*************************************************
     /*
     HttpClient client = new HttpClient();
+>>>>>>> 65d3f2ed503ad757e009c65cc199cd5fda931814
     client.badCertificateCallback =
     ((X509Certificate cert, String host, int port) => true);
 
