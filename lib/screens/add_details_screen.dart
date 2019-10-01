@@ -30,40 +30,42 @@ class AddDetailsScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              alignment: Alignment.center,
-              child: Text(
-                "User details",
-                style: TextStyle(fontSize: 30.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "User details",
+                  style: TextStyle(fontSize: 30.0),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: TextField(
-                textAlign: TextAlign.center,
-                onChanged: (newFirstname) {
-                  print(newFirstname);
-                  firstName = newFirstname;
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  onChanged: (newFirstname) {
+                    print(newFirstname);
+                    firstName = newFirstname;
+                  },
+                  controller: firstNameTEC,
+                ),
+              ),
+              PostcodeSearch(),
+              FlatButton(
+                onPressed: () {
+                  //Provider.of<UserData>(context).saveUser(User(firstName));
+                  print("Save Details");
+                  user.firstName = firstName;
+                  user.saveDetails();
                 },
-                controller: firstNameTEC,
+                child: Text("Add details"),
+                color: Color(0xff1db15b),
               ),
-            ),
-            PostcodeSearch(),
-            FlatButton(
-              onPressed: () {
-                //Provider.of<UserData>(context).saveUser(User(firstName));
-                print("Save Details");
-                user.firstName = firstName;
-                user.saveDetails();
-              },
-              child: Text("Add details"),
-              color: Color(0xff1db15b),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       drawer: ABCDrawer(),

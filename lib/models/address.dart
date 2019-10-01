@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:abc_app_flutter/helpers/example_json.dart';
 import 'package:http/http.dart' as http;
 
 class Address {
@@ -24,6 +25,9 @@ class Address {
     //*************************************************
     try {
       HttpClient client = new HttpClient();
+      //client.findProxy()
+      client.connectionTimeout = Duration(seconds: 3);
+
       client.badCertificateCallback =
           ((X509Certificate cert, String host, int port) => true);
 
@@ -38,26 +42,22 @@ class Address {
       return (decodedData['features']);
     } catch (e) {
       print(e.runtimeType);
-      //print(element['attributes']['ADDRESS']);
-      //print(element['attributes']['UPRN']);
-      //List l = new List();
-      //List attributes = new List();
-
-      var jsonString = '{"attributes": {"ADDRESS": "Problem", "UPRN": "0"}}';
+      ExampleJson ej = ExampleJson();
+      var decodedData = jsonDecode(ej.json);
+      print(decodedData['features']);
+      //return (decodedData['features']);
+      //print(decodedData);
+      //print("*****************************");
+      //print(decodedData["features"]);
+      //print("*****************************");
+      //print(decodedData['features'].runtimeType);
+      //print("*****************************");
+      //[{attributes: {ADDRESS: 3 Cossack Street Lochgilphead Argyll And Bute PA31 8JW , //UPRN: 000125006813}, geometry: {x: 186468.64, y: 687747.67}}
+      var jsonString = '[{"attributes": {"ADDRESS": "Problem", "UPRN": "0"}}]';
       var errorReturn = jsonDecode(jsonString);
       print(errorReturn);
-      print(errorReturn['attributes']);
-      print(errorReturn['attributes']['ADDRESS']);
-
-/*
-      var errorReturn = {
-        'attributes': [
-          {'ADDRESS': 'Problem'},
-          {'UPRN', '0'}
-        ]
-      };
-*/
-      List<dynamic> errorList = ['Problem'];
+      //print(errorReturn['attributes']);
+      //print(errorReturn['attributes']['ADDRESS']);
       return (errorReturn);
     }
     //*************************************************
@@ -74,6 +74,7 @@ class Address {
     }
      */
   }
+
 /*
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
