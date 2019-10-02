@@ -22,6 +22,13 @@ class Address {
     String requestURL = '$url${postcode.toUpperCase()}$endUrl';
     print(requestURL);
 
+    ExampleJson ej = ExampleJson();
+    var decodedData = jsonDecode(ej.json);
+    var features = decodedData['features'];
+    print(features.runtimeType);
+    print(decodedData['features']);
+    return (decodedData['features']);
+
     //*************************************************
     try {
       HttpClient client = new HttpClient();

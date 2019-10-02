@@ -76,7 +76,7 @@ class ABCAppBarWithTabs extends StatelessWidget {
       bottom: TabBar(
         tabs: <Widget>[
           Tab(
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.delete),
           ),
           Tab(
             icon: Icon(Icons.directions_car),

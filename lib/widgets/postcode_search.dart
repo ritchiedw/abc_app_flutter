@@ -50,15 +50,12 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: TextField(
-            textAlign: TextAlign.center,
-            onChanged: (newPostcode) {
-              print(newPostcode);
-              postCode = newPostcode;
-            },
-          ),
+        TextField(
+          textAlign: TextAlign.center,
+          onChanged: (newPostcode) {
+            print(newPostcode);
+            postCode = newPostcode;
+          },
         ),
         FlatButton(
           onPressed: () {
@@ -78,13 +75,13 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
           alignment: Alignment.center,
           padding: EdgeInsets.only(bottom: 10.0),
           color: Colors.lightBlue,
-          child: androidDropdown(),
+          child: Container(), // androidDropdown(),
         ),
         Container(
           height: 150.0,
           alignment: Alignment.center,
           padding: EdgeInsets.only(bottom: 10.0),
-          child: binDetails(),
+          child: Container(), //binDetails(),
         )
       ],
     );
@@ -108,6 +105,7 @@ class _PostcodeSearchState extends State<PostcodeSearch> {
     List<dynamic> addressList = await address.getAddressFromPostcode(postCode);
     //print(addressList);
     print(addressList[0]);
+    selectedUPRN = addressList[0]['attributes']['UPRN'];
     addressList.forEach((element) {
       print(element['attributes']['ADDRESS']);
       print(element['attributes']['UPRN']);
